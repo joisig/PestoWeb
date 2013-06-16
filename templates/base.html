@@ -1,0 +1,42 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>     <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>     <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ block page_title }}pesto{{ end }}</title>
+    <link rel="stylesheet" href="{{ static_url("css/style.css") }}" />
+    <link rel="stylesheet" href="{{ static_url("css/bootstrap.min.css") }}" />
+    <link rel="stylesheet" href="{{ static_url("css/bootstrap-responsive.min.css") }}" />
+</head>
+<body>
+
+    <div class="container">
+        {% block content %}{% end %}
+    </div>
+
+    <!-- Load jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script>!window.jQuery && document.write('<script src="{{ static_url("js/libs/jquery/jquery-1.10.1.min.js") }}"><\/script>')</script>
+
+    <!-- plugins -->
+    <script src="{{ static_url("js/libs/bootstrap.min.js") }}"></script>
+    <script src="{{ static_url("js/plugins.js") }}"></script>
+
+    <!-- main script -->
+    <script src="{{ static_url("js/script.js") }}"></script>
+
+    {% if (google_analytics_id != False) %}
+    <!-- analytic party -->
+    <script type="text/javascript">
+        var _gaq=[['_setAccount','{{ google_analytics_id }}'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+    {% end %}
+
+    </body>
+</html>
