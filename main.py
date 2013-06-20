@@ -48,9 +48,6 @@ class APIArchiveStrokesHandler(tornado.web.RequestHandler):
         instance_name = self.get_argument('instance_name')
         buff = json.loads(self.get_argument('buff'))
 
-        if len(archived_strokes) > 1000:
-            archived_strokes = []
-
         archived_strokes.append({
             'username': username,
             'password_hash': password_hash,
