@@ -1,4 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Meeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!</h1>
+    <h1>Meeeeeeeeeeeeeeeeeeeeeeeeeeee!</h1>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Username</th>
+                {# <th>Password hash</th> #}
+                <th>Instance name</th>
+                <th>Buffer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in strokes %}
+                <tr>
+                    <td>{{ row['username'] }}</td>
+                    {# <td>{{ row['password_hash'] }}</td> #}
+                    <td>{{ row['instance_name'] }}</td>
+                    <td>{{ row['buff'] }}</td>
+                </tr>
+            {% end %}
+        </tbody>
+    </table>
 {% end %}

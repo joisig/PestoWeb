@@ -5,17 +5,20 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.options
 import tornado.web
+import json
 
 # import and define tornado-y things
 from tornado.options import define
 define("port", default=5000, help="run on the given port", type=int)
 
+archived_strokes = []
 
 class Application(tornado.web.Application):
     def __init__(self):
 
         handlers = [
             (r"/?", MainHandler),
+            (r"/api/archive_strokes/?", APIArchiveStrokesHandler),
         ]
 
         settings = dict(
@@ -34,7 +37,26 @@ class MainHandler(tornado.web.RequestHandler):
         self.render(
             "main.html",
             google_analytics_id=google_analytics_id,
+            strokes=archived_strokes
         )
+
+
+class APIArchiveStrokesHandler(tornado.web.RequestHandler):
+    def post(self):
+        username = self.get_argument('username')
+        password_hash = self.get_argument('password_hash')
+        instance_name = self.get_argument('instance_name')
+        buff = json.loads(self.get_argument('buff'))
+
+        if len(archived_strokes) > 1000:
+            archived_strokes = []
+
+        archived_strokes.append({
+            'username': username,
+            'password_hash': password_hash,
+            'instance_name': instance_name,
+            'buff': buff
+        })
 
 
 def main():
