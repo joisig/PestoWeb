@@ -7,7 +7,7 @@ import tornado.options
 import tornado.web
 import json
 
-# import and define tornado-y things
+# Import and define tornado-y things.
 from tornado.options import define
 define("port", default=5000, help="run on the given port", type=int)
 
